@@ -1,26 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <the-navigation></the-navigation>
+  <main>
+    <!-- <router-view v-slot="slotProps">
+      <transition name="route" mode="out-in">
+        <component :is="slotProps.Component"></component>
+      </transition>
+    </router-view> -->
+    <router-view></router-view>
+  </main>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TheNavigation from "./components/layout/TheNavigation.vue";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { TheNavigation },
+  created() {
+    this.$store.dispatch("autoLogIn");
+  },
+};
 </script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Jost", sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+main {
+  margin: 0px;
 }
 </style>
