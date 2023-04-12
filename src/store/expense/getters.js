@@ -4,6 +4,8 @@ export default {
     },
     expensesStatsTotal(state) {
         return state.expenseStats;
-
+    },
+    currentMembers(state) {
+        return state.expenseMembers;
     }
 }

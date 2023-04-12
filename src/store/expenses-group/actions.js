@@ -1,10 +1,10 @@
 export default {
-    async gettingGroups({ commit, rootGetters }, search) {
-        const search_filer = search || null;
+    async gettingGroups({ commit, rootGetters }, data) {
+        const search_filer = data || null;
         const jwt = rootGetters.currentUserJWTt;
         let urll = '';
         if (search_filer == null) {
-            urll = "http://127.0.0.1:8000/expenses-group/all";
+            urll = "http://127.0.0.1:8000/expenses-group";
         }
         else {
             urll = "http://127.0.0.1:8000/expenses-group/all?search=" + search_filer;
@@ -16,7 +16,6 @@ export default {
                 "Content-type": "application/json",
                 Authorization:
                     `Bearer ${jwt}`,
-
             }
         }
         );
@@ -36,7 +35,7 @@ export default {
     },
     async addNewGroup({ commit, rootGetters }, title) {
         const jwt = rootGetters.currentUserJWTt;
-        const response = await fetch('http://127.0.0.1:8000/expenses-group', {
+        const response = await fetch('http://127.0.0.1:8000/expenses-group/', {
             method: 'POST',
             mode: 'cors',
             headers: {

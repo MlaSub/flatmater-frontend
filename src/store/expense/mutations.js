@@ -12,5 +12,8 @@ export default {
         const array = state.expenseList;
         const index = array.findIndex(v => v.id === payload);
         array.splice(index, 1);
+    },
+    addingGroupUsers(state, payload) {
+        state.expenseMembers = payload;
     }
 }

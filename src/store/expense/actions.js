@@ -42,7 +42,6 @@ export default {
             body: JSON.stringify(data)
         });
         const responseData = await response.json();
-        console.log(responseData);
         const newExpense = {
             id: responseData.id,
             name: data.name,
@@ -95,6 +94,23 @@ export default {
         } else {
             commit('deleteExpense', id);
 
+        }
+    },
+    async groupDetails({ commit, rootGetters }, id) {
+        const jwt = rootGetters.currentUserJWTt;
+        const response = await fetch(`http://127.0.0.1:8000/expenses-group/${id}`, {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                "Content-type": "application/json",
+                Authorization:
+                    `Bearer ${jwt}`,
+            },
+        });
+        const responseData = await response.json();
+        if (response.ok) {
+            const group_users = responseData.users;
+            commit('addingGroupUsers', group_users);
         }
     }
 

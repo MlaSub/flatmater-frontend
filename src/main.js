@@ -8,6 +8,8 @@ import App from './App.vue';
 import BaseCard from './components/UI/BaseCard.vue';
 import ThePaginationNavigation from './components/layout/ThePageNavigation.vue';
 import DeleteButton from './components/UI/DeleteButton.vue';
+import MoreOptions from './components/UI/MoreOptions.vue';
+import MemberSearch from './components/people/MemberSearch.vue'
 // import ExpensesList from './components/pages/ExpensesList.vue';
 
 import router from './router.js';
@@ -43,4 +45,6 @@ app.use(store);
 app.component('base-card', BaseCard);
 app.component('the-pagination-navigation', ThePaginationNavigation);
 app.component('delete-button', DeleteButton);
+app.component('more-options', MoreOptions);
+app.component('member-search', MemberSearch)
 app.mount('#app');

@@ -1,7 +1,10 @@
 <template>
   <the-page-navigation
+    :addNewButton="true"
+    :addFriends="true"
     @add-new-toggle="toggleAddingNewExpesne"
     @searched="filteredExpensesList"
+    @add-friends="closeMoreOptions"
   ></the-page-navigation>
   <add-expense
     v-if="addNewExpense"
@@ -18,18 +21,30 @@
       :expenseName="expense.name"
     ></expense-one>
   </ul>
+  <member-search
+    v-if="MemberSearchOn"
+    @closing="closeMoreOptions"
+  ></member-search>
 </template>
 <script>
 import ExpenseOne from "../../components/expense/ExpenseOne.vue";
 import ThePageNavigation from "../layout/ThePageNavigation.vue";
 import AddExpense from "../expense/AddExpense.vue";
 import ExpensesStats from "../stats/ExpensesStats.vue";
+import MemberSearch from "../people/MemberSearch.vue";
 import { mapActions } from "vuex";
 export default {
-  components: { ExpenseOne, ThePageNavigation, AddExpense, ExpensesStats },
+  components: {
+    ExpenseOne,
+    ThePageNavigation,
+    AddExpense,
+    ExpensesStats,
+    MemberSearch,
+  },
   data() {
     return {
       addNewExpense: false,
+      MemberSearchOn: false,
     };
   },
   computed: {
@@ -59,6 +74,9 @@ export default {
         name: searchParam,
       };
       await this.$store.dispatch("expense/gettingExpenses", data);
+    },
+    closeMoreOptions() {
+      this.MemberSearchOn = !this.MemberSearchOn;
     },
   },
   mounted() {

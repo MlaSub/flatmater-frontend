@@ -7,7 +7,9 @@
       >
       <p>Total amount: {{ totalAmountCom }} €</p>
     </div>
-    <delete-button @deleting="deletingGroup"></delete-button>
+    <div class="options">
+      <delete-button @deleting="deletingGroup"></delete-button>
+    </div>
   </base-card>
 </template>
 <script>
@@ -17,6 +19,7 @@ import DeleteButton from "../UI/DeleteButton.vue";
 export default {
   components: { BaseCard, BaseButton, DeleteButton },
   props: ["expensesGroupTitle", "id", "totalAmount"],
+  emits: ["moreOptionsClickG"],
   computed: {
     groupName() {
       return this.expensesGroupTitle;
@@ -32,6 +35,10 @@ export default {
     deletingGroup() {
       return this.$store.dispatch("groups/deleteGroup", this.id);
     },
+    moreOptionsClickG() {
+      const data = { group: this.id, seach: null };
+      this.$emit("moreOptionsClick", data);
+    },
   },
 };
 </script>
@@ -40,8 +47,15 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  /* padding: 1.5rem; */
 }
 h2 {
   font: 20px;
+}
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
 }
 </style>

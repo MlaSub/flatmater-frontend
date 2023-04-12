@@ -9,4 +9,9 @@
   margin: 1rem auto;
   max-width: 50%;
 }
+@media only screen and (max-width: 700px) {
+  .base-card {
+    max-width: 90%;
+  }
+}
 </style>
