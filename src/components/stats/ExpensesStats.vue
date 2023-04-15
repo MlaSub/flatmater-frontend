@@ -1,7 +1,12 @@
 <template>
   <base-card>
-    <p>Total cost: {{ statsOverview.total_group_expense }} €</p>
-    <p>Total personal cost: {{ statsOverview.total_personal_expense }} €</p>
+    <p>
+      Total amount of all expenses: {{ statsOverview.total_group_expense }} €
+    </p>
+    <p>Total you paid for: {{ statsOverview.total_personal_expense }} €</p>
+    <p>
+      How much did you spend: {{ statsOverview.pesronal_total_expense_share }} €
+    </p>
   </base-card>
 </template>
 <script>
