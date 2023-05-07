@@ -15,5 +15,11 @@ export default {
     },
     addingGroupUsers(state, payload) {
         state.expenseMembers = payload;
+    },
+    setExpensesDebtors(state, payload) {
+        state.expenseStatsDebtors = payload;
+    },
+    setExpensesOwing(state, payload) {
+        state.expenseStatsOwing = payload;
     }
 }

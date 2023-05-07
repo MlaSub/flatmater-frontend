@@ -78,6 +78,31 @@ export default {
             commit('setNewStats', responseData);
         }
     },
+    async expenseDebtors({ commit, rootGetters }, data) {
+        const data_filter = {
+            "group_id": data
+        }
+        const jwt = rootGetters.currentUserJWTt;
+        const response = await fetch('http://127.0.0.1:8000/overview/debt', {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-type": "application/json",
+                Authorization:
+                    `Bearer ${jwt}`,
+            },
+            body: JSON.stringify(data_filter)
+        });
+        const responseData = await response.json();
+        if (!response.ok) {
+            throw new Error('Error!');
+        } else {
+
+            commit('setExpensesDebtors', responseData.debtors);
+            commit('setExpensesOwing', responseData.owing);
+        }
+
+    },
     async deletingExpesne({ commit, rootGetters }, id) {
         const jwt = rootGetters.currentUserJWTt;
         const response = await fetch(`http://127.0.0.1:8000/expenses/items/${id}`, {

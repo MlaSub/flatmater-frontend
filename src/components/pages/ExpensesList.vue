@@ -59,9 +59,15 @@ export default {
     },
     recalculation() {
       window.setTimeout(
-        () =>
+        () => {
           this.$store.dispatch("expense/expensesStats", this.$route.params.id),
-        200
+            this.$store.dispatch(
+              "expense/expenseDebtors",
+              this.$route.params.id
+            );
+        },
+
+        250
       );
     },
     newExpenseAdded() {
@@ -82,6 +88,7 @@ export default {
   mounted() {
     this.gettingExpenses({ id: this.$route.params.id });
     this.$store.dispatch("expense/expensesStats", this.$route.params.id);
+    this.$store.dispatch("expense/expenseDebtors", this.$route.params.id);
   },
 };
 </script>

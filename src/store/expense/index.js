@@ -14,6 +14,8 @@ export default {
                 total_group_expense: 0,
                 total_personal_expense: 0
             },
+            expenseStatsDebtors: null,
+            expenseStatsOwing: null,
             expenseMembers: null
             // {
             //     id: '', name: '', description: '', amount: ''

@@ -18,11 +18,10 @@ export default {
   components: { BaseCard, DeleteButton },
   methods: {
     async deletingExpense() {
-      window.setTimeout(
-        () =>
-          this.$store.dispatch("expense/expensesStats", this.$route.params.id),
-        200
-      );
+      window.setTimeout(() => {
+        this.$store.dispatch("expense/expenseDebtors", this.$route.params.id),
+          this.$store.dispatch("expense/expensesStats", this.$route.params.id);
+      }, 200);
       await this.$store.dispatch("expense/deletingExpesne", this.id);
     },
   },
